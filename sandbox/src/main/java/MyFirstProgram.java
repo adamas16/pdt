@@ -1,12 +1,26 @@
 public class MyFirstProgram {
 
     public static void main(String[] args){
-        String somebody = "world";
-        System.out.println("Hello " + somebody + "!");
+        hello("me");
+        hello("you");
 
-        double l = 6.1;
-        double t = l * l;
-        System.out.println("Площадь квадрата со сторон l = " + l + " равна " + t);
+        double l = 5;
+        double a = 4;
+        double b = 6;
+        System.out.println("Площадь квадрата со сторон l = " + l + " равна " + area(l));
+        System.out.println("Площадь прямоугольника со сторонами a = " + a + " и b = " + b + " равна " + area(a,b));
+    }
+
+    public static void hello(String somebody){
+        System.out.println("Hello " + somebody + "!");
+    }
+
+    public static double area(double l){
+        return l * l;
+    }
+
+    public static double area(double a, double b){
+        return a*b;
     }
 
 }
