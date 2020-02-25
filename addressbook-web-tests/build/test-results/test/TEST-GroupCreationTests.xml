@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GroupCreationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-25T20:19:56" hostname="Arrnelka" time="1.081">
+  <properties/>
+  <testcase name="testGroupCreationTests" classname="GroupCreationTests" time="1.081"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 78.0.3904.70 (edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5-refs/branch-heads/3904@{#800}) on port 36927
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+[1582661992.819][WARNING]: This version of ChromeDriver has not been tested with Chrome version 79.
+[1582661994.823][WARNING]: Timed out connecting to Chrome, retrying...
+фев 25, 2020 11:19:56 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>
