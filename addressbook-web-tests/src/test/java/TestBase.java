@@ -1,13 +1,12 @@
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +19,7 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
+    @Step ("Автовход")
     public void autoLogin(String user, String password) {
         driver.get("http://localhost/addressbook/");
         driver.findElement(By.name("user")).click();
@@ -31,14 +31,17 @@ public class TestBase {
         driver.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
+    @Step ("Переход в вкладку группы")
     public void gotoGroupPage() {
         driver.findElement(By.linkText("groups")).click();
     }
 
+    @Step ("Нажатие на клавишу создания группы")
     public void initGroupCreation() {
         driver.findElement(By.name("new")).click();
     }
 
+    @Step ("Заполнение формы новой группы")
     public void fillGroupForm(String name, String header, String footer) {
         driver.findElement(By.name("group_name")).click();
         driver.findElement(By.name("group_name")).clear();
@@ -51,18 +54,22 @@ public class TestBase {
         driver.findElement(By.name("group_footer")).sendKeys(footer);
     }
 
+    @Step ("Подтверждение создания новой группы")
     public void submitGroupCreation() {
         driver.findElement(By.name("submit")).click();
     }
 
+    @Step ("Возврат на страницу групп")
     public void returnToGroupPage() {
         driver.findElement(By.linkText("group page")).click();
     }
 
+    @Step ("Нажатие на создание нового контакта")
     public void initContactCreation() {
         driver.findElement(By.linkText("add new")).click();
     }
 
+    @Step ("Заполнение формы нового контакта")
     public void fillContactForm(String name, String patronymic, String lastName, String nickName, String title, String country, String phone, String mail, String bDay, String bMonth, String bYear) {
         driver.findElement(By.name("firstname")).click();
         driver.findElement(By.name("firstname")).clear();
@@ -102,18 +109,41 @@ public class TestBase {
         driver.findElement(By.name("new_group")).click();
     }
 
+    @Step ("Подтверждение создания контакта")
     public void submitContactCreation() {
         driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
     }
 
+    @Step ("Выбор группы")
+    public void selectGroup() {
+        driver.findElement(By.name("selected[]")).click();
+    }
+
+    @Step ("Подтверждение удаления группы")
+    public void submitGroupDeletion() {
+        driver.findElement(By.name("delete")).click();
+    }
+
+    @Step ("Подтверждение удаления контакта")
+    public void submitContactDeletion() throws InterruptedException {
+        driver.findElement(By.xpath("//input[@value=\"Delete\"]")).click();
+        driver.switchTo().alert().accept();
+    }
+
+    @Step ("Нажатие на лого")
     public void clickLogo() {
         driver.findElement(By.id("logo")).click();
     }
 
+    @Step ("Выход из учетной записи")
     public void logout() {
         driver.findElement(By.linkText("Logout")).click();
     }
 
+    @Step ("Выбор контакта")
+    public void selectContact(){
+        driver.findElement(By.xpath("(//input[@name=\"selected[]\"])[1]"));
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
@@ -136,15 +166,5 @@ public class TestBase {
         } catch (NoAlertPresentException e) {
             return false;
         }
-    }
-
-
-    public void selectGroup() {
-        driver.findElement(By.linkText("groups")).click();
-        driver.findElement(By.name("selected[]")).click();
-    }
-
-    public void submitGroupDeletion() {
-        driver.findElement(By.name("delete")).click();
     }
 }
